@@ -1,2 +1,2 @@
 # nlp-app
-An NLP application with APIs that can extractive summarize single Vietnamese text.
+An NLP application with APIs that can abstractive summarize single Vietnamese text.
