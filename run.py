@@ -23,7 +23,7 @@ def run_fastapi():
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 def run_streamlit():
-    subprocess.run(["streamlit", "run", "./src/gui/gui.py"])
+    subprocess.run(["streamlit", "run", "./src/gui/gui.py", "--server.port", "8080"])
 
 if __name__ == "__main__":
     # Create threads for FastAPI and Streamlit
@@ -42,5 +42,5 @@ if __name__ == "__main__":
         fastapi_thread.join()
         streamlit_thread.join()
     except KeyboardInterrupt:
-        print('Interrupted! Shutting down...')
+        print('Shutting down...')
         sys.exit(0)
