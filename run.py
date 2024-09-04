@@ -1,29 +1,38 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(__file__))
 
-from src.api.api import app 
-
-# import uvicorn 
-# uvicorn.run(app, host="0.0.0.0", port=8000)
+import torch
 
 import threading
 import uvicorn
 import subprocess
 import signal
-import sys
 
+from src.api.api import app
 # Define a function to handle graceful shutdown
+from src.settings import *
+
+
 def signal_handler(sig, frame):
     print('Shutting down...')
     sys.exit(0)
+
 
 # Register the signal handler for SIGINT (Ctrl + C)
 signal.signal(signal.SIGINT, signal_handler)
 
 
 def run_fastapi():
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app,
+                host=FASTAPI_HOST,
+                port=FASTAPI_PORT)
+
 
 def run_streamlit():
-    subprocess.run(["streamlit", "run", "./src/gui/gui.py", "--server.port", "8080"])
+    subprocess.run(["streamlit", "run", "./src/gui/gui.py",
+                    "--server.port", STREAMLIT_PORT])
+
 
 if __name__ == "__main__":
     # Create threads for FastAPI and Streamlit
