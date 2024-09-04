@@ -8,12 +8,12 @@ OUTPUT_LENGTH = 256
 
 
 def t5_summary(text="", 
-               model_name="ntkhoi/bart-vi-news-summarization", 
+               model_name="ntkhoi/mt5-vi-news-summarization", 
                lang="vi"): 
     
     # if language selected is vietnamese
     if "vi" in lang.lower():
-        model_name = "ntkhoi/bart-vi-news-summarization" 
+        model_name = "ntkhoi/mt5-vi-news-summarization" 
         prompt = f""" Đọc hiểu và tạo 1 tóm tắt tóm lược đoạn văn bản sau với 3, 4 câu theo lời văn tự nhiên:
         ###
         {text} 
