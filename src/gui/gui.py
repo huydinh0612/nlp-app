@@ -25,7 +25,7 @@ with col2:
 
     if level1 == "Tiếng Việt":
         level2 = st.radio("Lựa chọn mô hình",
-                          ["ntkhoi/bart-vi-news-summarization"],
+                          ["ntkhoi/mt5-vi-news-summarization", "ntkhoi/bart-vi-news-summarization"],
                           index=0)
     elif level1 == "Tiếng Anh":
         level2 = st.radio("Lựa chọn mô hình",
