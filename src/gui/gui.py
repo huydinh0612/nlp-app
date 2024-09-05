@@ -10,9 +10,9 @@ from src.settings import FASTAPI_PORT
 
 st.set_page_config(layout='wide')
 
-st.title("Abstractive Summarization Web Application",)
+st.title("Ứng dụng tóm tắt tóm lược đơn văn bản",)
 
-text_input = st.text_area("Enter text for summarization:", height=250)
+text_input = st.text_area("Nhập văn bản để tóm tắt tóm lược:", height=250)
 
 response = None
 
