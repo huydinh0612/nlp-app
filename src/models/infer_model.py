@@ -1,7 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-INPUT_LENGTH = 512
-OUTPUT_LENGTH = 256
+INPUT_LENGTH = 1024
+OUTPUT_LENGTH = 512
 
 
 def generate_summary(text: str,
@@ -12,11 +12,15 @@ def generate_summary(text: str,
     """
 
     # First, define the prompt based on the languages selected
-    if "vi" in lang.lower():
-        prompt = f""" Đọc hiểu và tạo 1 tóm tắt tóm lược đoạn văn bản sau với 3, 4 câu theo lời văn tự nhiên:
-            ###
-            {text}
-            """
+    if model_name == 'ntkhoi/bart-vi-news-summarization':
+        if "vi" in lang.lower():
+            prompt = f""" Đọc hiểu và tạo 1 tóm tắt tóm lược đoạn văn bản sau với 3, 4 câu theo lời văn tự nhiên:
+                ###
+                {text}
+                """
+    elif model_name == 'ntkhoi/mt5-vi-news-summarization':
+        if "vi" in lang.lower():
+            prompt = f""" {text} """
     else:
         prompt = f"""Understand and generate abstractive summarize below text with max 3 natural senteneces:
             ###
