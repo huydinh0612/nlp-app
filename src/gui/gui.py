@@ -22,15 +22,10 @@ with col1:
     level1 = st.radio("Lựa chọn ngôn ngữ", ["Tiếng Việt", "Tiếng Anh"], index=0)
 
 with col2:
+    level2 = st.radio("Lựa chọn mô hình",
+                        ["Mô hình T5", "Mô hình BART"],
+                        index=0)
 
-    if level1 == "Tiếng Việt":
-        level2 = st.radio("Lựa chọn mô hình",
-                          ["ntkhoi/mt5-vi-news-summarization", "ntkhoi/bart-vi-news-summarization"],
-                          index=0)
-    elif level1 == "Tiếng Anh":
-        level2 = st.radio("Lựa chọn mô hình",
-                          ["siddheshtv/abstractive_summarization", "facebook/bart-large-cnn"],
-                          index=0)
 
 
 if col3.button("Summary", use_container_width=True):
