@@ -41,7 +41,7 @@ elif input_type == "Tải file lên":
 response = None
 
 
-col1, col2, col3 = st.columns((3, 8, 2))
+col1, col2, col3, col4 = st.columns((3, 3, 3, 5), gap="large")
 
 with col1:
     language = st.radio("Lựa chọn ngôn ngữ", ["Tiếng Việt", "Tiếng Anh"], index=0)
@@ -51,15 +51,18 @@ with col2:
                         ["Mô hình T5", "Mô hình BART"],
                         index=0)
 
+with col3:
+    output_len = st.number_input('Điều chỉnh số từ tối đa của kết quả tóm tắt', value=100, min_value=20, max_value=200, step=5)
 
 
-if col3.button("Tóm tắt", use_container_width=True):
+if col4.button("Tóm tắt", use_container_width=True):
 
         
     response = requests.post(f"http://localhost:{FASTAPI_PORT}/summarization_text",
                              json={"text": text_content, 
                                    "model": model_type, 
                                    "lang": language,
+                                   "output_length": int(output_len),
                                    })
 
 if response:

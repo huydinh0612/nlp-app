@@ -4,7 +4,7 @@ INPUT_LENGTH = 1024
 OUTPUT_LENGTH = 512
 
 
-def generate_summary(text: str, model_name: str = "BART", lang: str = "Tiếng Việt"):
+def generate_summary(text: str, model_name: str = "BART", lang: str = "Tiếng Việt",output_length: int = OUTPUT_LENGTH):
     """
     Generate summary of the text using the selected model.
     """
@@ -42,7 +42,7 @@ def generate_summary(text: str, model_name: str = "BART", lang: str = "Tiếng V
     input_ids, attention_masks = encoding["input_ids"], encoding["attention_mask"]
 
     outputs = model.generate(
-        input_ids=input_ids, attention_mask=attention_masks, max_length=OUTPUT_LENGTH
+        input_ids=input_ids, attention_mask=attention_masks, max_length=int(1.5*output_length)
     )
 
     summary = tokenizer.decode(

@@ -16,14 +16,15 @@ class TextRequest(BaseModel):
     text: str
     model: str
     lang: str
-
+    output_length: int
 
 @app.post("/summarization_text")
 def summarization_text(request: TextRequest):
     # summary with model t5
     summary = generate_summary(text=request.text,
                                model_name=request.model,
-                               lang=request.lang)
+                               lang=request.lang,
+                               output_length=request.output_length)
     return {'summary': summary}
 
 
