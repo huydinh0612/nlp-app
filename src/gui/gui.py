@@ -12,7 +12,21 @@ st.set_page_config(layout='wide')
 
 st.title("Ứng dụng tóm tắt tóm lược đơn văn bản",)
 
-text_input = st.text_area("Nhập văn bản để tóm tắt tóm lược:", height=250)
+input_type = st.radio("Lựa chọn kiểu đầu vào", ["Nhập trực tiếp", "Tải file lên"], index=0)
+if input_type == "Nhập trực tiếp":
+    input = st.text_area("Nhập văn bản để tóm tắt tóm lược:", height=250)
+elif input_type == "Tải file lên":
+    input = st.file_uploader("Chọn tệp văn bản để tải lên", type=["txt", "pdf", "docx", 'doc'])
+    if input:
+        file_type = input.name.split(".")[-1]
+        if file_type == 'txt':
+            input = input.read().decode("utf-8")
+            st.write(input)
+    else:
+        st.write("Chưa chọn file nào")
+        # doc = Document(uploaded_file)
+        # text_input = "\n".join([para.text for para in doc.paragraphs])
+
 
 response = None
 
@@ -30,7 +44,7 @@ with col2:
 
 if col3.button("Summary", use_container_width=True):
     response = requests.post(f"http://localhost:{FASTAPI_PORT}/summarization_text",
-                             json={"text": text_input, "model": level2, "lang": level1})
+                             json={"text": input, "model": level2, "lang": level1})
 
 if response:
     result = response.json()
