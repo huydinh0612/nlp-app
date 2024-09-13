@@ -40,4 +40,7 @@ docker build -t nlp_image:prod .
 ```
 docker container run -it -p 8080:8080 -d --name nlp_app nlp_image:prod
 ```
-
+2. Truy cập đường link dưới để sử dụng ứng dụng
+```
+localhost:8080
+```
